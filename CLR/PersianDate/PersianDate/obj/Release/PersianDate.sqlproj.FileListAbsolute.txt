@@ -1,0 +1,9 @@
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\bin\Release\PersianDate.dacpac
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\bin\Release\PersianDate.dll
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\bin\Release\PersianDate.pdb
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Release\PersianDate.dll
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Release\PersianDate.pdb
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Release\Model.xml
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Release\refactor.xml
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Release\postdeploy.sql
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Release\predeploy.sql

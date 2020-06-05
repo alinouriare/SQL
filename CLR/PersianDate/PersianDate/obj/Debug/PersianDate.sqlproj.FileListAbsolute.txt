@@ -1,0 +1,10 @@
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\bin\Debug\PersianDate.dacpac
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\bin\Debug\PersianDate.dll
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\bin\Debug\PersianDate.pdb
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\PersianDate.sqlprojAssemblyReference.cache
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\Model.xml
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\refactor.xml
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\postdeploy.sql
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\predeploy.sql
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\PersianDate.dll
+C:\Users\AliNouri\Desktop\SqlTest\CLR\PersianDate\PersianDate\obj\Debug\PersianDate.pdb

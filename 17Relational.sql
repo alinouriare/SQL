@@ -1,0 +1,166 @@
+﻿CREATE DATABASE TESTDB
+GO
+USE TESTDB
+GO
+CREATE SCHEMA Froosh AUTHORIZATION DBO
+GO
+CREATE SCHEMA Payeh AUTHORIZATION DBO
+GO
+CREATE TABLE Payeh.Customer(
+Code INT IDENTITY,
+[Name] NVARCHAR(30) COLLATE PERSIAN_100_CI_AI,
+[Family] NVARCHAR(50) COLLATE PERSIAN_100_CI_AI,
+Tel NVARCHAR(20) COLLATE PERSIAN_100_CI_AI,
+[Address] NVARCHAR(100) COLLATE PERSIAN_100_CI_AI,
+CONSTRAINT PK_Customer PRIMARY KEY(Code)
+)
+go
+
+CREATE TABLE Payeh.Kala(
+Cod INT,
+[Name] NVARCHAR(100) COLLATE  PERSIAN_100_CI_AI,
+CONSTRAINT PK_Kala PRIMARY KEY (Cod)
+)
+go
+CREATE TABLE Froosh.FaktorHeader(
+
+ID INT IDENTITY,
+CustCod INT,
+FaktorDate  DATETIME,
+Comment NVARCHAR(100) COLLATE PERSIAN_100_CI_AI,
+CONSTRAINT PK_FaktorHeader PRIMARY KEY (ID)
+)
+go
+
+CREATE TABLE Froosh.FaktorDetail(
+ID INT IDENTITY CONSTRAINT PK_FaktorDetail PRIMARY KEY(ID),
+FaktorID INT CONSTRAINT FK_FaktorDetail_FaktorHeader REFERENCES
+Froosh.FaktorHeader(ID),
+kaLaCod INT,
+Tedad REAL,
+Price MONEY,
+PriceKol AS (Tedad * Price) PERSISTED
+
+)
+--OR
+--CREATE TABLE Froosh.FaktorDetailU(
+--ID INT IDENTITY CONSTRAINT PK_FaktorDetail PRIMARY KEY(ID),
+--FaktorID INT ,
+--kaLaCod INT,
+--Tedad REAL,
+--Price MONEY,
+--PriceKol AS (Tedad * Price) PERSISTED,
+--CONSTRAINT FK_FaktorDetail_FaktorHeader FOREIGN KEY (FaktorID)
+--REFERENCES Froosh.FaktorHeader(ID)
+
+--)
+GO
+ALTER TABLE Froosh.FaktorHeader ADD CONSTRAINT FK_FaktorHeader_Customer
+FOREIGN KEY(CustCod) REFERENCES Payeh.Customer(Code)
+go
+
+ALTER TABLE Froosh.FaktorDetail ADD CONSTRAINT FK_FaktorDetail_Kala
+FOREIGN KEY(kaLaCod) REFERENCES Payeh.Kala(Cod)
+GO
+--------------------
+DROP TABLE IF EXISTS Teacher
+go
+CREATE TABLE Teacher(
+Code INT ,
+[Name] NVARCHAR (100),
+CONSTRAINT PK_Teacher PRIMARY KEY(Code)
+)
+go
+DROP TABLE IF EXISTS Student
+go
+CREATE TABLE Student(
+Code int,
+[Name] NVARCHAR(100),
+CONSTRAINT PK_Student PRIMARY KEY (Code)
+) 
+go
+
+CREATE TABLE Teacher_Student(
+ID INT IDENTITY,
+TeacherCode INT,
+StudentCode INT,
+CONSTRAINT PK_Teacher_Student PRIMARY KEY(ID),
+CONSTRAINT FK_Teacher_Student_Teacher FOREIGN KEY(TeacherCode)
+REFERENCES Teacher(Code)
+ON UPDATE CASCADE
+ON DELETE NO ACTION,
+CONSTRAINT FK_Teacher_Student_Student FOREIGN KEY(StudentCode)
+REFERENCES Student(Code)
+ON UPDATE NO ACTION
+ON DELETE CASCADE
+)
+GO
+
+INSERT INTO Teacher VALUES(100,'علی نوری')
+INSERT INTO Teacher VALUES(101,'امید خالقی')
+SELECT * FROM Teacher
+GO
+INSERT INTO Student VALUES(1000,'عرفان دهستانی')
+INSERT INTO Student VALUES(1001,'امیر حسین رحمانی')
+INSERT INTO Student VALUES(1002,'رضا اسدالهی')
+SELECT * FROM Student
+
+GO
+INSERT INTO Teacher_Student VALUES(100,1000)
+INSERT INTO Teacher_Student VALUES(100,1001)
+INSERT INTO Teacher_Student VALUES(100,1002)
+GO
+INSERT INTO Teacher_Student VALUES(101,1000)
+INSERT INTO Teacher_Student VALUES(101,1001)
+INSERT INTO Teacher_Student VALUES(101,1002)
+GO
+
+
+SELECT * FROM Teacher_Student
+GO
+--UPDATE TACHER
+--ON UPDATE CASCADE
+--ON DELETE NO ACTION
+UPDATE Teacher 
+SET Code=200
+WHERE Code=100
+GO
+SELECT * FROM Teacher_Student
+GO
+
+DELETE FROM Teacher WHERE Code=200
+GO
+SELECT * FROM Teacher_Student
+GO
+DELETE FROM Teacher_Student WHERE TeacherCode=200
+GO
+SP_HELPCONSTRAINT Teacher_Student
+GO
+ALTER TABLE  Teacher_Student NOCHECK CONSTRAINT FK_Teacher_Student_Teacher
+ALTER TABLE  Teacher_Student NOCHECK CONSTRAINT FK_Teacher_Student_Student
+GO
+INSERT INTO Teacher_Student VALUES(500,6000)
+GO
+SELECT * FROM Student
+SELECT * FROM  Teacher
+SELECT * FROM  Teacher_Student
+GO
+
+ALTER TABLE  Teacher_Student CHECK CONSTRAINT FK_Teacher_Student_Teacher
+ALTER TABLE  Teacher_Student CHECK CONSTRAINT FK_Teacher_Student_Student
+GO
+SP_HELPCONSTRAINT Teacher_Student
+GO
+DBCC CHECKTABLE('Teacher_Student')WITH EXTENDED_LOGICAL_CHECKS
+GO
+DBCC CHECKCONSTRAINTS('Teacher_Student')
+GO
+
+EXEC sp_MSforeachtable @command1="ALTER TABLE ? NOCHECK CONSTRAINT ALL"
+
+EXEC sp_MSforeachtable @command1="ALTER TABLE ? CHECK CONSTRAINT ALL"
+
+
+EXEC sp_MSforeachtable @command1="ALTER TABLE ? ENABLE TRIGGER ALL"
+
+EXEC sp_MSforeachtable @command1="ALTER TABLE ? DISABLE TRIGGER ALL"
