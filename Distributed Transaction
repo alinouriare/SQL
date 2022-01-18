@@ -3,3 +3,5 @@ Service:Distributed Transaction Coordinator
 DTCPing.exe
 
 Port:135
+
+dcomcnfg ===>Run
